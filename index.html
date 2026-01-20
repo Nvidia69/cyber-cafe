@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,6 +34,7 @@
             --chat-header-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --chat-user-msg: #007bff;
             --chat-bot-msg: #f1f0f0;
+            --footer-bg: #1a1a1a;
         }
 
         /* Dark Theme Variables */
@@ -53,6 +55,25 @@
             --chat-header-bg: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); 
             --chat-user-msg: #339af0;
             --chat-bot-msg: #333333;
+            --footer-bg: #0f0f0f;
+        }
+
+        /* --- SCROLL PROGRESS BAR --- */
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 2000;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-blue), var(--accent-green));
+            width: 0%;
+            box-shadow: 0 0 10px var(--primary-blue);
         }
 
         /* --- SCROLL ANIMATION CLASSES --- */
@@ -636,21 +657,57 @@
             width: 100%;
         }
 
-        /* Theme Toggle Button */
+        /* Theme Toggle Button - Professional Style */
         .theme-toggle {
             cursor: pointer;
             font-size: 1.2rem;
             margin-left: 20px;
             color: var(--text-main);
-            transition: transform 0.3s ease;
-            background: none;
-            border: none;
-            padding: 5px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--bg-section);
+            border: 1px solid var(--border-color);
+            padding: 0;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
         }
         
         .theme-toggle:hover {
-            transform: rotate(20deg);
+            transform: translateY(-2px);
+            background: var(--bg-card);
             color: var(--primary-blue);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            border-color: var(--primary-blue);
+        }
+
+        .theme-toggle i {
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        .theme-toggle:hover i {
+            transform: rotate(360deg);
+        }
+
+        /* Dark Mode Specific Button Style */
+        body.dark-mode .theme-toggle {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: #ffd700; /* Golden Sun */
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.15);
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border-color: #ffd700;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+            transform: translateY(-2px) scale(1.05);
         }
 
         .hamburger {
@@ -942,6 +999,87 @@
             font-size: 1.1rem;
         }
 
+        /* --- CALCULATOR SECTION CSS --- */
+        #calculator {
+            background-color: var(--bg-section);
+            position: relative;
+        }
+
+        .calculator-container {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px var(--card-shadow);
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .calc-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .calc-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .calc-input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-body);
+            color: var(--text-main);
+            outline: none;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .calc-input:focus {
+            border-color: var(--secondary-blue);
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.1);
+        }
+
+        .calc-result-box {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calc-result-box h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            opacity: 0.9;
+        }
+
+        .total-amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        /* Dark mode tweaks for calculator */
+        body.dark-mode .calculator-container {
+            border-color: #00f3ff;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.15);
+        }
+        
+        body.dark-mode .calc-input:focus {
+            border-color: #00f3ff;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+        }
+
         .btn-book {
             display: inline-block;
             padding: 8px 20px;
@@ -1038,6 +1176,29 @@
             z-index: 2;
             /* SLOWED DOWN ANIMATION: Changed 3s to 6s */
             animation: float 6s ease-in-out infinite;
+            
+            /* Add transition for hover effect on container */
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* Hover effect for floating icons container */
+        .float-icon:hover {
+            box-shadow: 0 0 25px var(--primary-blue), 0 0 10px white;
+            z-index: 10;
+        }
+
+        /* Specific hover glow for the second icon (green) */
+        .float-icon.i2:hover {
+             box-shadow: 0 0 25px var(--accent-green), 0 0 10px white;
+        }
+        
+        /* Hover effect for the inner icon symbol */
+        .float-icon i {
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .float-icon:hover i {
+            transform: scale(1.3) rotate(360deg);
         }
         
         .float-icon.i1 { top: -15px; left: -15px; animation-delay: 0s; }
@@ -1062,10 +1223,20 @@
             box-shadow: 0 0 15px #00f3ff;
         }
         
+        /* Dark Mode Hover */
+        body.dark-mode .float-icon:hover {
+            box-shadow: 0 0 30px #00f3ff, 0 0 10px white;
+        }
+        
         body.dark-mode .float-icon.i2 {
             color: #00ff00; /* Electric Green */
             border-color: #00ff00;
             box-shadow: 0 0 15px #00ff00;
+        }
+        
+        /* Dark Mode Hover for Green Icon */
+        body.dark-mode .float-icon.i2:hover {
+            box-shadow: 0 0 30px #00ff00, 0 0 10px white;
         }
 
         @keyframes float {
@@ -1126,9 +1297,76 @@
             border-radius: 50%;
         }
 
+        /* --- TESTIMONIALS SECTION --- */
+        #testimonials {
+            background-color: var(--bg-body);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px var(--card-shadow);
+            border-left: 5px solid var(--secondary-blue);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .testimonial-card i {
+            color: var(--secondary-blue);
+            font-size: 2rem;
+            margin-bottom: 15px;
+            opacity: 0.3;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+
+        .customer-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .customer-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: bold;
+        }
+
+        .customer-details h4 {
+            font-size: 1rem;
+            color: var(--text-main);
+            margin-bottom: 2px;
+        }
+
+        .rating {
+            color: #ffc107;
+            font-size: 0.8rem;
+        }
+
         /* --- CONTACT SECTION --- */
         #contact {
-            background-color: var(--bg-body);
+            background-color: var(--bg-section);
         }
 
         .contact-wrapper {
@@ -1171,6 +1409,12 @@
             display: flex;
             align-items: flex-start;
             margin-bottom: 30px;
+            transition: transform 0.3s ease; /* Added for smooth slide effect */
+            cursor: pointer;
+        }
+        
+        .contact-info-item:hover {
+            transform: translateX(10px); /* Slight slide to right on hover */
         }
 
         .contact-icon-box {
@@ -1185,6 +1429,26 @@
             flex-shrink: 0;
             color: white;
             font-size: 1.2rem;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Smooth rotation transition */
+        }
+        
+        .contact-info-item:hover .contact-icon-box {
+            transform: rotate(360deg) scale(1.1); /* Rotate and Zoom on hover */
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+        }
+        
+        /* Dark mode specific contact hover glow */
+        body.dark-mode .contact-info-item:hover .contact-icon-box {
+             box-shadow: 0 0 20px #00f3ff;
+        }
+        body.dark-mode .contact-info-item:hover .icon-green {
+            box-shadow: 0 0 20px #00ff41;
+        }
+        body.dark-mode .contact-info-item:hover .icon-red {
+            box-shadow: 0 0 20px #ff3131;
+        }
+        body.dark-mode .contact-info-item:hover .icon-orange {
+            box-shadow: 0 0 20px #ff9e1b;
         }
 
         .map-container {
@@ -1206,27 +1470,80 @@
             filter: grayscale(20%) invert(90%);
         }
 
-        /* --- FOOTER --- */
+        /* --- ADVANCED FOOTER --- */
         footer {
-            background-color: #1a1a1a; 
+            background-color: var(--footer-bg);
             color: #ffffff;
-            padding: 60px 0 30px;
-            text-align: center;
+            padding: 60px 0 20px;
             border-top: 1px solid #333;
         }
 
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary-blue);
+        }
+
+        .footer-col p {
+            font-size: 0.9rem;
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .footer-links li {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-blue);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.8rem;
+            color: #888;
+        }
+
         .footer-social {
-            margin: 25px 0;
+            margin-top: 20px;
         }
 
         .footer-social a {
             color: #ffffff;
-            font-size: 1.5rem;
-            margin: 0 15px;
+            font-size: 1.2rem;
+            margin-right: 15px;
             transition: var(--transition);
             display: inline-flex;
-            width: 50px; height: 50px;
-            background: #333;
+            width: 40px; height: 40px;
+            background: rgba(255,255,255,0.1);
             border-radius: 50%;
             align-items: center;
             justify-content: center;
@@ -1234,6 +1551,32 @@
 
         .footer-social a:hover {
             background: var(--secondary-blue);
+            transform: translateY(-3px);
+        }
+
+        /* --- BACK TO TOP BUTTON --- */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            display: none; /* Hidden by default */
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            z-index: 2000;
+            transition: all 0.3s ease;
+        }
+
+        #backToTop:hover {
+            background-color: var(--secondary-blue);
             transform: translateY(-5px);
         }
 
@@ -1498,10 +1841,20 @@
             .announcement-container {
                 font-size: 0.8rem;
             }
+            
+            #backToTop {
+                bottom: 100px;
+                left: 20px;
+            }
         }
     </style>
 </head>
 <body>
+
+    <!-- SCROLL PROGRESS BAR -->
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
 
     <header>
         <div class="container">
@@ -1560,128 +1913,54 @@
         </div>
     </section>
 
-    <section id="services">
+    <!-- NEW: PRICE CALCULATOR SECTION -->
+    <section id="calculator">
         <div class="container">
             <div class="section-title reveal">
-                <!-- ANIMATED TITLE -->
-                <h2 class="animated-text">Our Services</h2>
-                <p>We offer a wide range of computer and online services.</p>
+                <h2 class="animated-text">Quick Price Calculator</h2>
+                <p>Estimate your costs instantly before visiting.</p>
             </div>
-            <div class="services-grid">
-                <div class="service-card reveal">
-                    <!-- Icon: Globe (Cyan default) -->
-                    <div class="service-icon"><i class="fas fa-globe"></i></div>
-                    <h3>Internet Browsing</h3>
-                    <p>High-speed browsing for research, surfing, and downloading with secure connections.</p>
+            <div class="calculator-container reveal-zoom">
+                <div class="calc-grid">
+                    <div class="calc-group">
+                        <label>Select Service</label>
+                        <select id="calcService" class="calc-input" onchange="calculateTotal()">
+                            <!-- Printing & Scanning -->
+                            <option value="5">B/W Print / Xerox (₹5/page)</option>
+                            <option value="15">Color Print (₹15/page)</option>
+                            <option value="10">Scanning (₹10/page)</option>
+                            
+                            <!-- Internet & Forms -->
+                            <option value="30">Internet Browsing (₹30/hr)</option>
+                            <option value="100">Resume Making (₹100)</option>
+                            <option value="70">Online Form Filling (Avg ₹70)</option>
+                            
+                            <!-- Photos -->
+                            <option value="20">Passport Photo - 3 Pcs (₹20)</option>
+                            <option value="30">Passport Photo - 6 Pcs (₹30)</option>
+                            <option value="50">Passport Photo - 12 Pcs (₹50)</option>
+                            
+                            <!-- Govt Services & Others (ADDED) -->
+                            <option value="200">New PAN Card / Correction (₹200)</option>
+                            <option value="50">Aadhaar Print / Update (₹50)</option>
+                            <option value="150">Income/Caste/Domicile Cert (₹150)</option>
+                            <option value="200">Passport Application Charge (₹200)</option>
+                            <option value="50">Train/Flight Ticket Booking (Charge ₹50)</option>
+                            <option value="20">Exam Result Check & Print (₹20)</option>
+                        </select>
+                    </div>
+                    <div class="calc-group">
+                        <label>Quantity / Hours</label>
+                        <input type="number" id="calcQty" class="calc-input" value="1" min="1" oninput="calculateTotal()">
+                    </div>
                 </div>
-                <div class="service-card reveal">
-                    <!-- Icon: File (Yellow) -->
-                    <div class="service-icon icon-yellow"><i class="fas fa-file-alt"></i></div>
-                    <h3>Online Forms</h3>
-                    <p>Expert filling of Sarkari Exams, Admission forms, Scholarships, and Private Job applications.</p>
+                
+                <div class="calc-result-box">
+                    <h3>Estimated Total Cost</h3>
+                    <div class="total-amount">₹<span id="calcTotal">5</span></div>
                 </div>
-                <div class="service-card reveal">
-                    <!-- Icon: ID Card (Pink) -->
-                    <div class="service-icon icon-pink"><i class="fas fa-id-card"></i></div>
-                    <h3>Aadhaar & PAN</h3>
-                    <p>New PAN card application, Aadhaar printing, corrections, and updates.</p>
-                </div>
-                <div class="service-card reveal">
-                    <!-- Icon: Print (Green) -->
-                    <div class="service-icon icon-green"><i class="fas fa-print"></i></div>
-                    <h3>Print & Scan</h3>
-                    <p>High-quality B/W and Color printing, scanning, Xerox, and lamination services.</p>
-                </div>
-                <div class="service-card reveal">
-                    <!-- Icon: User (Purple/Pink) -->
-                    <div class="service-icon icon-pink"><i class="fas fa-user-tie"></i></div>
-                    <h3>Resume Making</h3>
-                    <p>Professional CV/Resume creation to help you land your dream job.</p>
-                </div>
-                <div class="service-card reveal">
-                    <!-- Icon: Ticket (Orange) -->
-                    <div class="service-icon icon-orange"><i class="fas fa-ticket-alt"></i></div>
-                    <h3>Ticket Booking</h3>
-                    <p>Instant booking for Train (IRCTC), Bus, and Flight tickets.</p>
-                </div>
-                <div class="service-card reveal">
-                    <!-- Icon: Passport (Blue - Default or Custom) -->
-                    <div class="service-icon"><i class="fas fa-passport"></i></div>
-                    <h3>Passport Seva</h3>
-                    <p>New passport application assistance and appointment scheduling.</p>
-                </div>
-                <div class="service-card reveal">
-                    <!-- Icon: Graduation (Yellow/Gold) -->
-                    <div class="service-icon icon-yellow"><i class="fas fa-graduation-cap"></i></div>
-                    <h3>Exam Results</h3>
-                    <p>Checking and printing of Board results, Admit Cards, and University marks.</p>
-                </div>
-                <div class="service-card reveal">
-                    <!-- Icon: Certificate (Gold/Yellow) -->
-                    <div class="service-icon icon-gold"><i class="fas fa-certificate"></i></div>
-                    <h3>Govt Certificates</h3>
-                    <p>Apply for Income (Aay), Caste (Jati), and Domicile (Niwas) certificates easily.</p>
-                </div>
+                <p style="text-align: center; margin-top: 15px; font-size: 0.85rem; color: var(--text-secondary);">*Note: Prices may vary for bulk orders.</p>
             </div>
-        </div>
-    </section>
-
-    <section id="pricing">
-        <div class="container">
-            <div class="section-title reveal">
-                <!-- ANIMATED TITLE -->
-                <h2 class="animated-text">Our Pricing</h2>
-                <p>Affordable rates for students and daily customers.</p>
-            </div>
-            <div class="pricing-container reveal-zoom">
-                <table class="pricing-table">
-                    <thead>
-                        <tr>
-                            <th>Service Name</th>
-                            <th>Price (Approx)</th>
-                            <th style="text-align: center;">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Internet Browsing</td>
-                            <td class="price-tag">&#8377;30 / Hour</td>
-                            <td style="text-align: center;"><a href="#contact" class="btn-book">Book Now</a></td>
-                        </tr>
-                        <tr>
-                            <td>B/W Print / Xerox</td>
-                            <td class="price-tag">&#8377;5 / Page</td>
-                            <td style="text-align: center;"><a href="#contact" class="btn-book">Order</a></td>
-                        </tr>
-                        <tr>
-                            <td>Color Print</td>
-                            <td class="price-tag">&#8377;10 - &#8377;20</td>
-                            <td style="text-align: center;"><a href="#contact" class="btn-book">Order</a></td>
-                        </tr>
-                        <tr>
-                            <td>Scanning</td>
-                            <td class="price-tag">&#8377;10 / Doc</td>
-                            <td style="text-align: center;"><a href="#contact" class="btn-book">Scan Now</a></td>
-                        </tr>
-                        <tr>
-                            <td>Online Form Filling</td>
-                            <td class="price-tag">&#8377;50 - &#8377;100</td>
-                            <td style="text-align: center;"><a href="#contact" class="btn-book">Apply</a></td>
-                        </tr>
-                        <tr>
-                            <td>Resume / CV Making</td>
-                            <td class="price-tag">&#8377;100 / Resume</td>
-                            <td style="text-align: center;"><a href="#contact" class="btn-book">Create</a></td>
-                        </tr>
-                        <tr>
-                            <td>Passport Photo (Urgent)</td>
-                            <td class="price-tag" style="font-size: 0.9rem;">&#8377;20(3), &#8377;30(6), &#8377;50(12)</td>
-                            <td style="text-align: center;"><a href="#contact" class="btn-book">Get Now</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <p style="margin-top: 20px; font-size: 0.9rem; color: var(--text-secondary); text-align: center;">*Prices are subject to change based on requirements and paper quality.</p>
         </div>
     </section>
 
@@ -1801,6 +2080,51 @@
         </div>
     </section>
 
+    <!-- NEW: TESTIMONIALS SECTION -->
+    <section id="testimonials">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2 class="animated-text">What People Say</h2>
+                <p>Trusted by thousands of happy customers in Ayodhya.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <i class="fas fa-quote-left"></i>
+                    <p class="testimonial-text">"Best cyber cafe in Ayodhya! My SSC form was filled correctly and I got my admit card on time. Very professional service."</p>
+                    <div class="customer-info">
+                        <div class="customer-avatar">RK</div>
+                        <div class="customer-details">
+                            <h4>Rahul Kumar</h4>
+                            <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal" style="transition-delay: 0.2s">
+                    <i class="fas fa-quote-left"></i>
+                    <p class="testimonial-text">"Urgent passport photo aur print out chahiye tha, 5 min mein kaam ho gaya. Quality bahut achi thi."</p>
+                    <div class="customer-info">
+                        <div class="customer-avatar">AS</div>
+                        <div class="customer-details">
+                            <h4>Anjali Singh</h4>
+                            <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal" style="transition-delay: 0.4s">
+                    <i class="fas fa-quote-left"></i>
+                    <p class="testimonial-text">"Internet speed is amazing here. I downloaded my study material very fast. Highly recommended for students."</p>
+                    <div class="customer-info">
+                        <div class="customer-avatar">VY</div>
+                        <div class="customer-details">
+                            <h4>Vikram Yadav</h4>
+                            <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contact">
         <div class="container">
             <div class="section-title reveal">
@@ -1864,18 +2188,45 @@
         </div>
     </section>
 
+    <!-- UPDATED: ADVANCED FOOTER -->
     <footer>
         <div class="container">
-            <h3>Shree Balaji Cyber Cafe</h3>
-            <p>Your one-stop solution for all online works.</p>
-            <div class="footer-social">
-                <a href="#" class="social-fb"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="social-insta"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="social-tw"><i class="fab fa-twitter"></i></a>
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>About Us</h3>
+                    <p>Shree Balaji Cyber Cafe is Ayodhya's premier digital service center. We provide fast, reliable, and secure online solutions for students and professionals.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-fb"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-insta"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-tw"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#pricing">Price List</a></li>
+                        <li><a href="#ai-tools">AI Tools</a></li>
+                        <li><a href="#contact">Contact Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Near DR. Academy, Ayodhya</li>
+                        <li><i class="fas fa-phone-alt"></i> +91 79856 97872</li>
+                        <li><i class="fas fa-envelope"></i> pks3342274@gmail.com</li>
+                    </ul>
+                </div>
             </div>
-            <p>&copy; 2024 Shree Balaji Cyber Cafe. All Rights Reserved.</p>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Shree Balaji Cyber Cafe. All Rights Reserved. | Designed with ❤️ in India.</p>
+            </div>
         </div>
     </footer>
+
+    <!-- Back To Top Button -->
+    <button id="backToTop" title="Go to top"><i class="fas fa-arrow-up"></i></button>
 
     <!-- Floating Buttons Container -->
     <div class="floating-buttons">
@@ -1907,18 +2258,18 @@
 
     <script>
         // --- Hamburger Menu Logic ---
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        document.querySelectorAll('.nav-links li a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
+        // --- PRICE CALCULATOR LOGIC ---
+        function calculateTotal() {
+            const price = parseFloat(document.getElementById('calcService').value);
+            const qty = parseFloat(document.getElementById('calcQty').value);
+            
+            if (qty > 0) {
+                const total = price * qty;
+                // Animate the number change
+                const totalElement = document.getElementById('calcTotal');
+                totalElement.innerText = total;
+            }
+        }
 
         // --- Theme Toggle Logic ---
         const themeToggleBtn = document.getElementById('theme-toggle');
@@ -1964,7 +2315,7 @@
             }, observerOptions);
 
             // Select all elements with reveal classes
-            const animatedElements = document.querySelectorAll('.service-card, .reveal, .reveal-left, .reveal-right, .reveal-zoom');
+            const animatedElements = document.querySelectorAll('.service-card, .testimonial-card, .reveal, .reveal-left, .reveal-right, .reveal-zoom');
             
             animatedElements.forEach((el, index) => {
                 // Add staggered delay for service cards if not manually set
@@ -1973,6 +2324,32 @@
                 }
                 observer.observe(el);
             });
+        });
+
+        // --- SCROLL PROGRESS & BACK TO TOP LOGIC ---
+        window.onscroll = function() {
+            scrollFunction();
+            updateProgressBar();
+        };
+
+        function scrollFunction() {
+            const backToTopBtn = document.getElementById("backToTop");
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                backToTopBtn.style.display = "flex";
+            } else {
+                backToTopBtn.style.display = "none";
+            }
+        }
+
+        function updateProgressBar() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("myBar").style.width = scrolled + "%";
+        }
+
+        document.getElementById("backToTop").addEventListener("click", function() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
         });
 
         // --- API KEYS CONFIGURATION ---
