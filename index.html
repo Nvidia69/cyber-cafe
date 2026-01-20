@@ -735,13 +735,55 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Internet Browsing</td><td class="price-tag">&#8377;30 / Hour</td><td style="text-align: center;"><a href="#contact" class="btn-neon btn-neon-blue">Book Now</a></td></tr>
-                        <tr><td>B/W Print / Xerox</td><td class="price-tag">&#8377;5 / Page</td><td style="text-align: center;"><a href="#contact" class="btn-neon btn-neon-green">Order</a></td></tr>
-                        <tr><td>Color Print</td><td class="price-tag">&#8377;10 - &#8377;20</td><td style="text-align: center;"><a href="#contact" class="btn-neon btn-neon-pink">Order</a></td></tr>
-                        <tr><td>Scanning</td><td class="price-tag">&#8377;10 / Doc</td><td style="text-align: center;"><a href="#contact" class="btn-neon btn-neon-orange">Scan Now</a></td></tr>
-                        <tr><td>Online Form Filling</td><td class="price-tag">&#8377;50 - &#8377;100</td><td style="text-align: center;"><a href="#contact" class="btn-neon btn-neon-purple">Apply</a></td></tr>
-                        <tr><td>Resume / CV Making</td><td class="price-tag">&#8377;100 / Resume</td><td style="text-align: center;"><a href="#contact" class="btn-neon btn-neon-gold">Create</a></td></tr>
-                        <tr><td>Passport Photo (Urgent)</td><td class="price-tag" style="font-size: 0.9rem;">&#8377;20(3), &#8377;30(6), &#8377;50(12)</td><td style="text-align: center;"><a href="#contact" class="btn-neon btn-neon-red">Get Now</a></td></tr>
+                        <tr>
+                            <td>Internet Browsing</td>
+                            <td class="price-tag">&#8377;30 / Hour</td>
+                            <td style="text-align: center;">
+                                <a href="https://wa.me/917985697872?text=Hello,%20I%20want%20to%20book%20Internet%20Browsing" class="btn-neon btn-neon-blue" target="_blank">Book Now</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>B/W Print / Xerox</td>
+                            <td class="price-tag">&#8377;5 / Page</td>
+                            <td style="text-align: center;">
+                                <a href="https://wa.me/917985697872?text=Hello,%20I%20need%20B/W%20Print%20or%20Xerox" class="btn-neon btn-neon-green" target="_blank">Order</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Color Print</td>
+                            <td class="price-tag">&#8377;10 - &#8377;20</td>
+                            <td style="text-align: center;">
+                                <a href="https://wa.me/917985697872?text=Hello,%20I%20need%20Color%20Printing" class="btn-neon btn-neon-pink" target="_blank">Order</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Scanning</td>
+                            <td class="price-tag">&#8377;10 / Doc</td>
+                            <td style="text-align: center;">
+                                <a href="https://wa.me/917985697872?text=Hello,%20I%20need%20Document%20Scanning" class="btn-neon btn-neon-orange" target="_blank">Scan Now</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Online Form Filling</td>
+                            <td class="price-tag">&#8377;50 - &#8377;100</td>
+                            <td style="text-align: center;">
+                                <a href="https://wa.me/917985697872?text=Hello,%20I%20want%20to%20apply%20for%20an%20Online%20Form" class="btn-neon btn-neon-purple" target="_blank">Apply</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Resume / CV Making</td>
+                            <td class="price-tag">&#8377;100 / Resume</td>
+                            <td style="text-align: center;">
+                                <a href="https://wa.me/917985697872?text=Hello,%20I%20want%20to%20create%20a%20Resume/CV" class="btn-neon btn-neon-gold" target="_blank">Create</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Passport Photo (Urgent)</td>
+                            <td class="price-tag" style="font-size: 0.9rem;">&#8377;20(3), &#8377;30(6), &#8377;50(12)</td>
+                            <td style="text-align: center;">
+                                <a href="https://wa.me/917985697872?text=Hello,%20I%20need%20Urgent%20Passport%20Photos" class="btn-neon btn-neon-red" target="_blank">Get Now</a>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -970,15 +1012,18 @@
                     </div>
                 </div>
                 <div class="form-container reveal-right">
-                    <form class="contact-form">
+                    <!-- Updated Form with WhatsApp Logic -->
+                    <form class="contact-form" onsubmit="event.preventDefault(); sendToWhatsApp();">
                         <div style="text-align: center; margin-bottom: 20px;">
                             <h3 class="neon-box">Send us a Message</h3>
                         </div>
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="tel" placeholder="Your Mobile Number" required>
-                        <input type="email" placeholder="Your Email (Optional)">
-                        <textarea placeholder="How can we help you?" required></textarea>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                        <input type="text" id="contactName" placeholder="Your Name" required>
+                        <input type="tel" id="contactMobile" placeholder="Your Mobile Number" required>
+                        <input type="email" id="contactEmail" placeholder="Your Email (Optional)">
+                        <textarea id="contactMessage" placeholder="How can we help you?" required></textarea>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            Send Message <i class="fab fa-whatsapp" style="margin-left: 5px;"></i>
+                        </button>
                     </form>
                 </div>
             </div>
@@ -1010,7 +1055,7 @@
                 <div class="footer-col">
                     <h3>Contact Info</h3>
                     <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt"></i> Near DR. Academy Bikapur, Bikapur Ayodhya, Pin - 224204</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Near DR. Academy, Ayodhya</li>
                         <li><i class="fas fa-phone-alt"></i> +91 79856 97872</li>
                         <li><i class="fas fa-envelope"></i> pks3342274@gmail.com</li>
                     </ul>
@@ -1265,6 +1310,21 @@
                 if (!response.ok) throw new Error(data.error?.message);
                 outputBox.innerText = data.candidates?.[0]?.content?.parts?.[0]?.text || "No text generated.";
             } catch (error) { outputBox.innerText = `Error: ${error.message}`; } finally { btn.innerHTML = '<i class="fas fa-magic"></i> Generate Application'; btn.disabled = false; }
+        }
+
+        // --- CONTACT FORM TO WHATSAPP LOGIC ---
+        function sendToWhatsApp() {
+            const name = document.getElementById('contactName').value;
+            const mobile = document.getElementById('contactMobile').value;
+            const email = document.getElementById('contactEmail').value;
+            const message = document.getElementById('contactMessage').value;
+
+            // Create formatted WhatsApp message
+            const whatsappText = `*New Inquiry from Website*%0A%0A*Name:* ${name}%0A*Mobile:* ${mobile}%0A*Email:* ${email}%0A*Message:* ${message}`;
+            
+            // Open WhatsApp
+            const url = `https://wa.me/917985697872?text=${whatsappText}`;
+            window.open(url, '_blank');
         }
 
         // --- AI CHATBOT ---
