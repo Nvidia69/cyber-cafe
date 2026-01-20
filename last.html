@@ -1,0 +1,2261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shree Balaji Cyber Cafe - Best online services, form filling, printing, and internet browsing center in India.">
+    <title>Shree Balaji Cyber Cafe | All Digital Services Under One Roof</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES & THEME CONFIG --- */
+        :root {
+            /* Common Colors */
+            --primary-blue: #0056b3;
+            --secondary-blue: #007bff;
+            --accent-green: #25d366;
+            --ai-purple: #8e44ad;
+            --transition: all 0.3s ease;
+
+            /* Light Theme (Default) */
+            --bg-body: #ffffff;
+            --bg-section: #f4f4f4;
+            --bg-card: #ffffff;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --nav-bg: #ffffff;
+            --nav-shadow: rgba(0,0,0,0.1);
+            --card-shadow: rgba(0,0,0,0.05);
+            --border-color: #ddd;
+            --chat-bg: #ffffff;
+            --chat-header-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --chat-user-msg: #007bff;
+            --chat-bot-msg: #f1f0f0;
+        }
+
+        /* Dark Theme Variables */
+        body.dark-mode {
+            --primary-blue: #4dabf7; 
+            --secondary-blue: #339af0;
+            
+            --bg-body: #121212;
+            --bg-section: #1e1e1e;
+            --bg-card: #252525;
+            --text-main: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --nav-bg: #1a1a1a;
+            --nav-shadow: rgba(0,0,0,0.5);
+            --card-shadow: rgba(0,0,0,0.3);
+            --border-color: #444;
+            --chat-bg: #252525;
+            --chat-header-bg: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); 
+            --chat-user-msg: #339af0;
+            --chat-bot-msg: #333333;
+        }
+
+        /* --- SCROLL ANIMATION CLASSES --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-zoom {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.8s ease-out;
+        }
+        .reveal-zoom.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* --- GLOBAL DARK MODE NEON OVERRIDES --- */
+        
+        /* 1. Base Neon Glow Style (Default Cyan) */
+        body.dark-mode .service-icon,
+        body.dark-mode .contact-icon-box {
+            background: transparent !important;
+            border: 2px solid #00f3ff;
+            color: #00f3ff !important;
+            box-shadow: 0 0 15px #00f3ff, inset 0 0 5px rgba(0, 243, 255, 0.3);
+            text-shadow: 0 0 5px #00f3ff;
+        }
+
+        /* --- SPECIFIC ICON COLORS IN DARK MODE --- */
+
+        /* Green Neon (Phone, Print) */
+        body.dark-mode .icon-green {
+            border-color: #00ff41 !important;
+            color: #00ff41 !important;
+            box-shadow: 0 0 15px #00ff41, inset 0 0 5px rgba(0, 255, 65, 0.3) !important;
+            text-shadow: 0 0 5px #00ff41 !important;
+        }
+
+        /* Red Neon (Map/Location) */
+        body.dark-mode .icon-red {
+            border-color: #ff3131 !important;
+            color: #ff3131 !important;
+            box-shadow: 0 0 15px #ff3131, inset 0 0 5px rgba(255, 49, 49, 0.3) !important;
+            text-shadow: 0 0 5px #ff3131 !important;
+        }
+
+        /* Yellow/Gold Neon (Forms, Email) */
+        body.dark-mode .icon-yellow {
+            border-color: #ffc107 !important;
+            color: #ffc107 !important;
+            box-shadow: 0 0 15px #ffc107, inset 0 0 5px rgba(255, 193, 7, 0.3) !important;
+            text-shadow: 0 0 5px #ffc107 !important;
+        }
+
+        /* Gold Neon (Certificates) */
+        body.dark-mode .icon-gold {
+            border-color: #ffd700 !important;
+            color: #ffd700 !important;
+            box-shadow: 0 0 15px #ffd700, inset 0 0 5px rgba(255, 215, 0, 0.3) !important;
+            text-shadow: 0 0 5px #ffd700 !important;
+        }
+
+        /* Pink/Purple Neon (Aadhaar, Resume) */
+        body.dark-mode .icon-pink {
+            border-color: #ff00ff !important;
+            color: #ff00ff !important;
+            box-shadow: 0 0 15px #ff00ff, inset 0 0 5px rgba(255, 0, 255, 0.3) !important;
+            text-shadow: 0 0 5px #ff00ff !important;
+        }
+
+        /* Orange Neon (Tickets) */
+        body.dark-mode .icon-orange {
+            border-color: #ff9e1b !important;
+            color: #ff9e1b !important;
+            box-shadow: 0 0 15px #ff9e1b, inset 0 0 5px rgba(255, 158, 27, 0.3) !important;
+            text-shadow: 0 0 5px #ff9e1b !important;
+        }
+
+        /* 3. All Primary Buttons & Book Buttons Glow (Default Cyan) */
+        body.dark-mode .btn-primary, 
+        body.dark-mode .btn-book {
+            background: transparent !important;
+            border: 2px solid #00f3ff;
+            color: #00f3ff !important;
+            box-shadow: 0 0 15px #00f3ff, inset 0 0 5px rgba(0, 243, 255, 0.5);
+            text-shadow: 0 0 5px #00f3ff;
+        }
+        
+        body.dark-mode .btn-primary:hover, 
+        body.dark-mode .btn-book:hover {
+            background: #00f3ff !important;
+            color: #121212 !important;
+            box-shadow: 0 0 30px #00f3ff;
+            text-shadow: none;
+        }
+
+        /* 4. Social Media Icons Glow (Multi-Color Neon) */
+        body.dark-mode .footer-social a {
+            background: transparent !important;
+            border-style: solid;
+            border-width: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Facebook - Neon Blue */
+        body.dark-mode .footer-social a.social-fb {
+            border-color: #1877F2 !important;
+            color: #1877F2 !important;
+            box-shadow: 0 0 10px #1877F2, inset 0 0 5px rgba(24, 119, 242, 0.3);
+            text-shadow: 0 0 5px #1877F2;
+        }
+        body.dark-mode .footer-social a.social-fb:hover {
+            background: #1877F2 !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 20px #1877F2;
+        }
+
+        /* Instagram - Neon Pink */
+        body.dark-mode .footer-social a.social-insta {
+            border-color: #E1306C !important;
+            color: #E1306C !important;
+            box-shadow: 0 0 10px #E1306C, inset 0 0 5px rgba(225, 48, 108, 0.3);
+            text-shadow: 0 0 5px #E1306C;
+        }
+        body.dark-mode .footer-social a.social-insta:hover {
+            background: #E1306C !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 20px #E1306C;
+        }
+
+        /* Twitter - Neon Sky Blue */
+        body.dark-mode .footer-social a.social-tw {
+            border-color: #1DA1F2 !important;
+            color: #1DA1F2 !important;
+            box-shadow: 0 0 10px #1DA1F2, inset 0 0 5px rgba(29, 161, 242, 0.3);
+            text-shadow: 0 0 5px #1DA1F2;
+        }
+        body.dark-mode .footer-social a.social-tw:hover {
+            background: #1DA1F2 !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 20px #1DA1F2;
+        }
+
+        /* 5. Floating Buttons Glow */
+        body.dark-mode .whatsapp-float {
+            background: transparent !important;
+            border: 2px solid #25d366;
+            color: #25d366 !important;
+            box-shadow: 0 0 15px #25d366, inset 0 0 5px #25d366;
+        }
+        body.dark-mode .whatsapp-float:hover {
+            background: #25d366 !important;
+            color: #fff !important;
+            box-shadow: 0 0 30px #25d366;
+        }
+
+        body.dark-mode .ai-chat-btn {
+            background: transparent !important;
+            border: 2px solid #d500f9;
+            color: #d500f9 !important;
+            box-shadow: 0 0 15px #d500f9, inset 0 0 5px #d500f9;
+            animation: none;
+        }
+        body.dark-mode .ai-chat-btn:hover {
+            box-shadow: 0 0 30px #d500f9;
+        }
+
+        /* --- END DARK MODE OVERRIDES --- */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-body);
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, var(--primary-blue), var(--secondary-blue));
+            color: #ffffff; 
+        }
+        
+        body.dark-mode .btn-primary {
+            color: #ffffff; 
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 86, 179, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #ffffff;
+            color: #ffffff;
+            margin-left: 10px;
+        }
+
+        .btn-outline:hover {
+            background-color: #ffffff;
+            color: #0056b3;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        /* --- SPECIAL ANIMATION FOR TITLES (GLOBAL CLASS) --- */
+        .animated-text {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary-blue), #ff0055, var(--secondary-blue));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientFlow 3s linear infinite, bounceTitle 2s ease-in-out infinite;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: inline-block;
+            position: relative;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            background: var(--secondary-blue);
+            bottom: -10px;
+            left: 25%;
+            border-radius: 2px;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes bounceTitle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .section-title p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* --- NEON GLOW BOX STYLE --- */
+        .neon-box {
+            color: var(--primary-blue);
+            padding: 15px 30px;
+            border: 2px solid var(--primary-blue);
+            border-radius: 10px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 10px var(--primary-blue), inset 0 0 5px var(--primary-blue);
+            animation: neonPulse 1.5s infinite alternate;
+        }
+
+        body.dark-mode .neon-box {
+            color: #00f3ff;
+            border-color: #00f3ff;
+            background: transparent;
+            box-shadow: 0 0 15px #00f3ff, inset 0 0 10px #00f3ff;
+            text-shadow: 0 0 5px #00f3ff;
+        }
+
+        @keyframes neonPulse {
+            0% {
+                box-shadow: 0 0 5px var(--primary-blue), inset 0 0 5px var(--primary-blue);
+                transform: scale(1);
+            }
+            100% {
+                box-shadow: 0 0 25px var(--primary-blue), 0 0 10px var(--secondary-blue), inset 0 0 10px var(--primary-blue);
+                transform: scale(1.02);
+            }
+        }
+        
+        body.dark-mode .neon-box {
+             animation: neonPulseDark 1.5s infinite alternate;
+        }
+
+        @keyframes neonPulseDark {
+            0% {
+                box-shadow: 0 0 10px #00f3ff, inset 0 0 5px #00f3ff;
+                text-shadow: 0 0 5px #00f3ff;
+                transform: scale(1);
+            }
+            100% {
+                box-shadow: 0 0 30px #00f3ff, 0 0 10px #ffffff, inset 0 0 15px #00f3ff;
+                text-shadow: 0 0 15px #00f3ff;
+                transform: scale(1.02);
+            }
+        }
+
+        /* --- GALLERY SECTION CSS --- */
+        #gallery {
+            background-color: var(--bg-section);
+            transition: background-color 0.3s ease;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--card-shadow);
+            cursor: pointer;
+            height: 250px;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        /* Gallery Dark Mode (Neon Borders) */
+        body.dark-mode .gallery-item {
+            border: 2px solid #00f3ff;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+        }
+        
+        body.dark-mode .gallery-item:hover {
+            box-shadow: 0 0 20px #00f3ff;
+        }
+
+        /* --- AI TOOLS SECTION CSS --- */
+        .ai-tool-container {
+            background: var(--bg-card);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px var(--card-shadow);
+            border: 1px solid var(--border-color);
+            max-width: 800px;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+        }
+
+        .ai-output-box {
+            background: var(--bg-section);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 25px;
+            white-space: pre-wrap;
+            display: none; /* Hidden initially */
+            border: 1px solid var(--border-color);
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-main);
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        /* Dark mode neon support for AI section */
+        body.dark-mode .ai-tool-container {
+            border-color: #d500f9; /* Purple Neon */
+            box-shadow: 0 0 15px rgba(213, 0, 249, 0.2);
+        }
+        body.dark-mode .ai-output-box {
+            border-color: #d500f9;
+            box-shadow: inset 0 0 10px rgba(213, 0, 249, 0.1);
+        }
+
+        /* Custom styling for inputs in AI section */
+        .ai-input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-body);
+            color: var(--text-main);
+            outline: none;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+        .ai-input:focus {
+            border-color: var(--ai-purple);
+        }
+        body.dark-mode .ai-input:focus {
+            border-color: #d500f9;
+            box-shadow: 0 0 10px rgba(213, 0, 249, 0.3);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* --- HEADER & NAV --- */
+        header {
+            background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent for glass effect */
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px var(--nav-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        /* Dark Mode Header Style */
+        body.dark-mode header {
+            background-color: rgba(26, 26, 26, 0.9);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .logo i {
+            margin-right: 0; /* Gap handled by flex gap */
+            transition: var(--transition);
+        }
+
+        /* Dark Mode Logo Neon */
+        body.dark-mode .logo {
+            color: #fff;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Logo Icon Neon Glow */
+        body.dark-mode .logo i {
+            color: #00f3ff;
+            text-shadow: 0 0 10px #00f3ff;
+            filter: drop-shadow(0 0 2px #00f3ff);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center; 
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-blue);
+        }
+        
+        /* Nav Links Neon Hover in Dark Mode */
+        body.dark-mode .nav-links a:hover {
+            color: #00f3ff;
+            text-shadow: 0 0 8px #00f3ff;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary-blue);
+            transition: width 0.3s;
+        }
+
+        /* Neon Underline in Dark Mode */
+        body.dark-mode .nav-links a::after {
+            background-color: #00f3ff;
+            box-shadow: 0 0 5px #00f3ff;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            cursor: pointer;
+            font-size: 1.2rem;
+            margin-left: 20px;
+            color: var(--text-main);
+            transition: transform 0.3s ease;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+        
+        .theme-toggle:hover {
+            transform: rotate(20deg);
+            color: var(--primary-blue);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-main);
+        }
+
+        /* --- ANNOUNCEMENT BAR CSS --- */
+        .announcement-container {
+            background-color: #ff9800; /* Orange/Yellow */
+            color: white;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            height: 40px;
+            position: relative;
+            z-index: 990;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .announcement-label {
+            background-color: #e65100; /* Darker Orange */
+            color: white;
+            padding: 0 15px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            z-index: 2;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+            white-space: nowrap;
+        }
+
+        .marquee-wrapper {
+            flex: 1;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 35s linear infinite; /* Slower Speed */
+            padding-left: 100%;
+        }
+
+        .marquee-content:hover {
+            animation-play-state: paused;
+        }
+
+        .update-item {
+            display: inline-block;
+            margin-right: 50px;
+            font-weight: 500;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Dark mode for announcement */
+        body.dark-mode .announcement-container {
+            background-color: #ffa726;
+            color: #121212;
+        }
+        body.dark-mode .announcement-label {
+            background-color: #ef6c00;
+            color: white;
+        }
+
+        /* --- UPDATED HERO SECTION --- */
+        #home {
+            /* Added fallback background color #0056b3 */
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'), #0056b3;
+            background-size: cover;
+            background-position: center;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #ffffff; 
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated background overlay effect */
+        #home::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle, transparent 20%, #000 150%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px !important;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            animation: fadeInDown 1s ease-out;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            font-weight: 800;
+        }
+        
+        /* New Subheading with Typing Effect */
+        .typing-container {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #4dabf7;
+            font-weight: 600;
+            min-height: 1.6em;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #ddd;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease-out 0.3s backwards;
+        }
+        
+        .hero-btn-container {
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- SERVICES SECTION --- */
+        #services {
+            background-color: var(--bg-section);
+            transition: background-color 0.3s ease;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            padding: 35px 25px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--card-shadow);
+            border-top: 4px solid transparent;
+            
+            /* Animation base */
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.4s ease, opacity 0.8s ease, transform 0.8s ease; 
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card.reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Hover Effect Line */
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 0; height: 4px;
+            background: var(--secondary-blue);
+            transition: width 0.4s ease;
+        }
+        
+        .service-card:hover::before {
+            width: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--secondary-blue);
+            margin-bottom: 20px;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-block;
+            background: rgba(0, 123, 255, 0.1);
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+        }
+
+        .service-card:hover .service-icon {
+            transform: rotateY(360deg) scale(1.1);
+            background: var(--secondary-blue);
+            color: white;
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* --- PRICING SECTION --- */
+        #pricing {
+            background-color: var(--bg-body);
+        }
+
+        .pricing-container {
+            background: var(--bg-card);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px var(--card-shadow);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .pricing-table {
+            width: 100%;
+            border-collapse: separate; 
+            border-spacing: 0;
+        }
+
+        .pricing-table th {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: #ffffff;
+            font-weight: 600;
+            padding: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+            border: none;
+        }
+
+        .pricing-table td {
+            padding: 20px 25px;
+            vertical-align: middle;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-main);
+            transition: background-color 0.3s ease;
+        }
+
+        .pricing-table tbody tr {
+            transition: all 0.3s ease;
+        }
+
+        .pricing-table tbody tr:hover {
+            background-color: var(--bg-section);
+            transform: scale(1.01);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            z-index: 10;
+            position: relative;
+        }
+
+        .pricing-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .price-tag {
+            font-weight: 700;
+            color: var(--primary-blue);
+            font-size: 1.1rem;
+        }
+
+        .btn-book {
+            display: inline-block;
+            padding: 8px 20px;
+            font-size: 0.85rem;
+            border-radius: 50px;
+            background: linear-gradient(45deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+            border: none;
+        }
+
+        body.dark-mode .btn-book {
+            color: #121212;
+            font-weight: 600;
+        }
+
+        .btn-book:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 123, 255, 0.5);
+        }
+
+        .btn-book::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-book::after {
+            left: 100%;
+        }
+
+        /* --- UPDATED ABOUT SECTION (GLASSMORPHISM & 3D) --- */
+        #about {
+            background-color: var(--bg-section);
+            transition: background-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Background Blob shape for About */
+        #about::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(to right, rgba(0,86,179,0.1), rgba(0,123,255,0.1));
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            z-index: 0;
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-image {
+            flex: 1;
+            position: relative;
+            perspective: 1000px; /* For 3D Tilt */
+        }
+        
+        /* Floating Icons around image */
+        .float-icon {
+            position: absolute;
+            background: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            /* NEON GLOW (Static) - Default Blue */
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+            box-shadow: 0 0 15px var(--primary-blue);
+            
+            font-size: 1.2rem;
+            z-index: 2;
+            /* SLOWED DOWN ANIMATION: Changed 3s to 6s */
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .float-icon.i1 { top: -15px; left: -15px; animation-delay: 0s; }
+        
+        .float-icon.i2 { 
+            bottom: -15px; 
+            right: -15px; 
+            /* Adjusted delay to half of the new duration for sync */
+            animation-delay: 3s; 
+            
+            /* Override for Green Icon */
+            color: var(--accent-green); 
+            border-color: var(--accent-green);
+            box-shadow: 0 0 15px var(--accent-green);
+        }
+
+        /* Dark Mode for Icons */
+        body.dark-mode .float-icon {
+            background: #252525;
+            color: #00f3ff; /* Electric Cyan */
+            border-color: #00f3ff;
+            box-shadow: 0 0 15px #00f3ff;
+        }
+        
+        body.dark-mode .float-icon.i2 {
+            color: #00ff00; /* Electric Green */
+            border-color: #00ff00;
+            box-shadow: 0 0 15px #00ff00;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            transition: transform 0.1s ease; /* Fast transition for smooth tilt */
+            border: 5px solid rgba(255,255,255,0.5);
+            /* Initial State */
+            transform-style: preserve-3d;
+        }
+
+        .about-text {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px); /* Glassmorphism */
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        
+        body.dark-mode .about-text {
+            background: rgba(30, 30, 30, 0.7);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-blue);
+        }
+
+        .about-features {
+            list-style: none;
+            margin-top: 25px;
+        }
+
+        .about-features li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .about-features i {
+            color: var(--accent-green);
+            margin-right: 15px;
+            font-size: 1.2rem;
+            background: rgba(37, 211, 102, 0.1);
+            padding: 8px;
+            border-radius: 50%;
+        }
+
+        /* --- CONTACT SECTION --- */
+        #contact {
+            background-color: var(--bg-body);
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-form {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--card-shadow);
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            outline: none;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: var(--secondary-blue);
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.1);
+        }
+
+        .contact-form textarea {
+            height: 140px;
+            resize: none;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+
+        .contact-icon-box {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .map-container {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--card-shadow);
+            margin-top: 30px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 250px;
+            border: none;
+            filter: grayscale(0%);
+            transition: filter 0.3s;
+        }
+
+        body.dark-mode .map-container iframe {
+            filter: grayscale(20%) invert(90%);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #1a1a1a; 
+            color: #ffffff;
+            padding: 60px 0 30px;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+
+        .footer-social {
+            margin: 25px 0;
+        }
+
+        .footer-social a {
+            color: #ffffff;
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: var(--transition);
+            display: inline-flex;
+            width: 50px; height: 50px;
+            background: #333;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-social a:hover {
+            background: var(--secondary-blue);
+            transform: translateY(-5px);
+        }
+
+        /* --- FLOATING BUTTONS --- */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 2000;
+        }
+
+        .float-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: var(--transition);
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+        }
+
+        .whatsapp-float {
+            background-color: var(--accent-green);
+            color: white;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        .ai-chat-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 24px;
+            animation: pulse-purple 2s infinite;
+        }
+
+        .ai-chat-btn:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse-purple {
+            0% { box-shadow: 0 0 0 0 rgba(118, 75, 162, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(118, 75, 162, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(118, 75, 162, 0); }
+        }
+
+        /* --- AI CHATBOX WIDGET --- */
+        .chat-widget {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            width: 350px;
+            height: 500px;
+            background-color: var(--chat-bg);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+            display: none; 
+            flex-direction: column;
+            z-index: 2001;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .chat-widget.active {
+            display: flex;
+            animation: slideUp 0.3s ease forwards;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .chat-header {
+            background: var(--chat-header-bg);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h3 {
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0;
+        }
+
+        .close-chat {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s;
+        }
+        
+        .close-chat:hover { background: rgba(255,255,255,0.4); }
+
+        .chat-body {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .chat-message {
+            max-width: 85%;
+            padding: 12px 18px;
+            border-radius: 18px;
+            font-size: 0.95rem;
+            word-wrap: break-word;
+            line-height: 1.5;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .bot-message {
+            background-color: var(--chat-bot-msg);
+            color: var(--text-main);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .user-message {
+            background-color: var(--chat-user-msg);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .typing-indicator {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-left: 20px;
+            margin-bottom: 10px;
+            display: none;
+            font-style: italic;
+        }
+
+        .chat-input-area {
+            padding: 15px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 10px;
+            background-color: var(--chat-bg);
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            outline: none;
+            background-color: var(--bg-section);
+            color: var(--text-main);
+        }
+
+        .send-btn {
+            background: var(--chat-header-bg);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+        }
+
+        .send-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                right: -100%;
+                background-color: var(--nav-bg);
+                height: 90vh;
+                width: 100%;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: 0.5s;
+                box-shadow: 0 10px 10px var(--nav-shadow);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                margin: 20px 0;
+            }
+            
+            .theme-toggle {
+                margin-left: 0;
+                margin-top: 20px;
+                font-size: 1.5rem;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .typing-container {
+                font-size: 1.2rem;
+            }
+
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .pricing-table th, .pricing-table td {
+                padding: 15px 10px;
+                font-size: 0.85rem;
+            }
+            
+            .btn-book {
+                padding: 6px 12px;
+                font-size: 0.75rem;
+            }
+
+            .chat-widget {
+                width: 90%;
+                right: 5%;
+                bottom: 100px;
+                height: 60vh;
+            }
+            
+            .announcement-container {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-laptop-code"></i> Shree Balaji Cyber Cafe
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#ai-tools" style="color: var(--ai-purple); font-weight: 700;">AI Tools</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </ul>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ANNOUNCEMENT BAR (AUTO-UPDATING) -->
+    <div class="announcement-container">
+        <div class="announcement-label">📢 Latest Updates:</div>
+        <div class="marquee-wrapper">
+            <div class="marquee-content" id="marqueeContent">
+                <span class="update-item">💥 UP Police Constable Admit Card Out!</span>
+                <span class="update-item">🚀 SSC GD Online Forms Last Date Soon</span>
+                <span class="update-item">💳 Pan Card Correction in 3 Days</span>
+                <span class="update-item">📄 PM Kisan KYC Available</span>
+                <span class="update-item">🎓 Scholarship Forms Verified Here</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- UPDATED HERO SECTION -->
+    <section id="home">
+        <div class="container hero-content reveal-zoom">
+            <h1>Welcome to Shree Balaji Cyber Cafe</h1>
+            <!-- Typing Text Container -->
+            <div class="typing-container">
+                I want to apply for <span id="typewriter" style="color: #ffc107; text-decoration: underline;"></span>
+            </div>
+            
+            <p>Your one-stop destination for high-speed internet, government form filling, printing, and all online digital services in Ayodhya.</p>
+            
+            <div class="hero-btn-container">
+                <a href="#services" class="btn btn-primary">View Services</a>
+                <a href="#contact" class="btn btn-outline">Contact Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <div class="section-title reveal">
+                <!-- ANIMATED TITLE -->
+                <h2 class="animated-text">Our Services</h2>
+                <p>We offer a wide range of computer and online services.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <!-- Icon: Globe (Cyan default) -->
+                    <div class="service-icon"><i class="fas fa-globe"></i></div>
+                    <h3>Internet Browsing</h3>
+                    <p>High-speed browsing for research, surfing, and downloading with secure connections.</p>
+                </div>
+                <div class="service-card reveal">
+                    <!-- Icon: File (Yellow) -->
+                    <div class="service-icon icon-yellow"><i class="fas fa-file-alt"></i></div>
+                    <h3>Online Forms</h3>
+                    <p>Expert filling of Sarkari Exams, Admission forms, Scholarships, and Private Job applications.</p>
+                </div>
+                <div class="service-card reveal">
+                    <!-- Icon: ID Card (Pink) -->
+                    <div class="service-icon icon-pink"><i class="fas fa-id-card"></i></div>
+                    <h3>Aadhaar & PAN</h3>
+                    <p>New PAN card application, Aadhaar printing, corrections, and updates.</p>
+                </div>
+                <div class="service-card reveal">
+                    <!-- Icon: Print (Green) -->
+                    <div class="service-icon icon-green"><i class="fas fa-print"></i></div>
+                    <h3>Print & Scan</h3>
+                    <p>High-quality B/W and Color printing, scanning, Xerox, and lamination services.</p>
+                </div>
+                <div class="service-card reveal">
+                    <!-- Icon: User (Purple/Pink) -->
+                    <div class="service-icon icon-pink"><i class="fas fa-user-tie"></i></div>
+                    <h3>Resume Making</h3>
+                    <p>Professional CV/Resume creation to help you land your dream job.</p>
+                </div>
+                <div class="service-card reveal">
+                    <!-- Icon: Ticket (Orange) -->
+                    <div class="service-icon icon-orange"><i class="fas fa-ticket-alt"></i></div>
+                    <h3>Ticket Booking</h3>
+                    <p>Instant booking for Train (IRCTC), Bus, and Flight tickets.</p>
+                </div>
+                <div class="service-card reveal">
+                    <!-- Icon: Passport (Blue - Default or Custom) -->
+                    <div class="service-icon"><i class="fas fa-passport"></i></div>
+                    <h3>Passport Seva</h3>
+                    <p>New passport application assistance and appointment scheduling.</p>
+                </div>
+                <div class="service-card reveal">
+                    <!-- Icon: Graduation (Yellow/Gold) -->
+                    <div class="service-icon icon-yellow"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>Exam Results</h3>
+                    <p>Checking and printing of Board results, Admit Cards, and University marks.</p>
+                </div>
+                <div class="service-card reveal">
+                    <!-- Icon: Certificate (Gold/Yellow) -->
+                    <div class="service-icon icon-gold"><i class="fas fa-certificate"></i></div>
+                    <h3>Govt Certificates</h3>
+                    <p>Apply for Income (Aay), Caste (Jati), and Domicile (Niwas) certificates easily.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing">
+        <div class="container">
+            <div class="section-title reveal">
+                <!-- ANIMATED TITLE -->
+                <h2 class="animated-text">Our Pricing</h2>
+                <p>Affordable rates for students and daily customers.</p>
+            </div>
+            <div class="pricing-container reveal-zoom">
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th>Service Name</th>
+                            <th>Price (Approx)</th>
+                            <th style="text-align: center;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Internet Browsing</td>
+                            <td class="price-tag">&#8377;30 / Hour</td>
+                            <td style="text-align: center;"><a href="#contact" class="btn-book">Book Now</a></td>
+                        </tr>
+                        <tr>
+                            <td>B/W Print / Xerox</td>
+                            <td class="price-tag">&#8377;5 / Page</td>
+                            <td style="text-align: center;"><a href="#contact" class="btn-book">Order</a></td>
+                        </tr>
+                        <tr>
+                            <td>Color Print</td>
+                            <td class="price-tag">&#8377;10 - &#8377;20</td>
+                            <td style="text-align: center;"><a href="#contact" class="btn-book">Order</a></td>
+                        </tr>
+                        <tr>
+                            <td>Scanning</td>
+                            <td class="price-tag">&#8377;10 / Doc</td>
+                            <td style="text-align: center;"><a href="#contact" class="btn-book">Scan Now</a></td>
+                        </tr>
+                        <tr>
+                            <td>Online Form Filling</td>
+                            <td class="price-tag">&#8377;50 - &#8377;100</td>
+                            <td style="text-align: center;"><a href="#contact" class="btn-book">Apply</a></td>
+                        </tr>
+                        <tr>
+                            <td>Resume / CV Making</td>
+                            <td class="price-tag">&#8377;100 / Resume</td>
+                            <td style="text-align: center;"><a href="#contact" class="btn-book">Create</a></td>
+                        </tr>
+                        <tr>
+                            <td>Passport Photo (Urgent)</td>
+                            <td class="price-tag" style="font-size: 0.9rem;">&#8377;20(3), &#8377;30(6), &#8377;50(12)</td>
+                            <td style="text-align: center;"><a href="#contact" class="btn-book">Get Now</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.9rem; color: var(--text-secondary); text-align: center;">*Prices are subject to change based on requirements and paper quality.</p>
+        </div>
+    </section>
+
+    <!-- PHOTO GALLERY SECTION -->
+    <section id="gallery">
+      <div class="container">
+        <div class="section-title reveal">
+           <h2 class="animated-text">Photo Gallery</h2>
+           <p>Glimpses of our center and happy customers.</p>
+        </div>
+        <div class="gallery-grid">
+           <!-- Gallery Item 1: Aadhaar/Biometric -->
+           <div class="gallery-item reveal-zoom">
+               <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=800&auto=format&fit=crop" 
+                    alt="Aadhaar Biometric Services"
+                    onerror="this.src='https://placehold.co/600x400?text=Aadhaar+Service'">
+               <div class="gallery-caption">Aadhaar & Biometric Services</div>
+           </div>
+           <!-- Gallery Item 2: Passport -->
+           <div class="gallery-item reveal-zoom">
+               <img src="https://images.unsplash.com/photo-1706880471208-88328ff11505?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW5kaWFuJTIwcGFzc3BvcnR8ZW58MHx8MHx8fDA%3D" 
+                    alt="Passport Services"
+                    onerror="this.src='https://placehold.co/600x400?text=Passport+Service'">
+               <div class="gallery-caption">Passport Application</div>
+           </div>
+           <!-- Gallery Item 3: Banking/Money (UPDATED WITH USER LINK) -->
+           <div class="gallery-item reveal-zoom">
+               <img src="https://images.unsplash.com/photo-1699951425150-7eea40e646b0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8NTAwJTIwcnVwZWVzJTIwbm90ZXxlbnwwfHwwfHx8MA%3D%3D" 
+                    alt="Money Transfer & Banking"
+                    onerror="this.src='https://placehold.co/600x400?text=Money+Transfer'">
+               <div class="gallery-caption">Money Transfer (AePS)</div>
+           </div>
+           <!-- Gallery Item 4: Form Filling -->
+           <div class="gallery-item reveal-zoom">
+               <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=800&auto=format&fit=crop" 
+                    alt="Online Form Filling"
+                    onerror="this.src='https://placehold.co/600x400?text=Online+Form'">
+               <div class="gallery-caption">Sarkari Form Filling</div>
+           </div>
+           <!-- Gallery Item 5: Printing -->
+           <div class="gallery-item reveal-zoom">
+               <img src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?q=80&w=800&auto=format&fit=crop" 
+                    alt="High Quality Printing"
+                    onerror="this.src='https://placehold.co/600x400?text=Printing+Service'">
+               <div class="gallery-caption">Color & B/W Printing</div>
+           </div>
+           <!-- Gallery Item 6: Interior/Work -->
+           <div class="gallery-item reveal-zoom">
+               <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop" 
+                    alt="Cyber Cafe Workspace"
+                    onerror="this.src='https://placehold.co/600x400?text=Cyber+Cafe'">
+               <div class="gallery-caption">High-Speed Internet Zone</div>
+           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW: AI APPLICATION WRITER TOOL -->
+    <section id="ai-tools">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2 class="animated-text">✨ AI Application Writer</h2>
+                <p>Generate formal applications & letters instantly with AI.</p>
+            </div>
+            <div class="ai-tool-container reveal-zoom">
+                <form id="appWriterForm" onsubmit="event.preventDefault(); handleAppGeneration();">
+                    <div style="margin-bottom: 20px;">
+                        <label style="font-weight:600; margin-bottom: 8px; display:block; color: var(--text-main);">Application Type</label>
+                        <select id="appType" class="ai-input">
+                            <option value="Leave Application">Leave Application (Chutti ke liye)</option>
+                            <option value="Bank Application">Bank Application (ATM/Passbook)</option>
+                            <option value="Job Application">Job Application (Naukri ke liye)</option>
+                            <option value="Complaint Letter">Complaint Letter (Shikayat)</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label style="font-weight:600; margin-bottom: 8px; display:block; color: var(--text-main);">Details (Hindi or English)</label>
+                        <textarea id="appDetails" class="ai-input" style="height:120px; resize: none;" placeholder="E.g., 2 din ki chutti chahiye bukhar hai... or ATM card lost..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="generateBtn" style="width:100%; border-radius: 10px;">
+                        <i class="fas fa-magic"></i> Generate Application
+                    </button>
+                </form>
+                <div id="aiOutput" class="ai-output-box"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UPDATED ABOUT SECTION -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title reveal">
+                <!-- ANIMATED TITLE -->
+                <h2 class="animated-text">About Us</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-image reveal-left" id="tiltImage">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cyber Cafe Interior">
+                    <!-- Floating Badge Icons -->
+                    <div class="float-icon i1"><i class="fas fa-wifi"></i></div>
+                    <div class="float-icon i2"><i class="fas fa-print"></i></div>
+                </div>
+                <div class="about-text reveal-right">
+                    <h3>Your Trusted Digital Partner</h3>
+                    <p>Founded in 2020, <strong>Shree Balaji Cyber Cafe</strong> has become the heartbeat of Ayodhya's digital needs. We aren't just a cafe; we are your personal assistants for the digital world.</p>
+                    
+                    <ul class="about-features">
+                        <li><i class="fas fa-check-circle"></i> High-Speed 100Mbps Fiber Internet</li>
+                        <li><i class="fas fa-check-circle"></i> Private & Secure Browsing Cabins</li>
+                        <li><i class="fas fa-check-circle"></i> 100% Error-Free Form Filling Guarantee</li>
+                        <li><i class="fas fa-check-circle"></i> Instant Tatkal Ticket Booking</li>
+                    </ul>
+                    
+                    <a href="#contact" class="btn btn-primary" style="margin-top: 20px;">Read More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="section-title reveal">
+                <!-- ANIMATED TITLE -->
+                <h2 class="animated-text">Contact Us</h2>
+                <p>Visit us or call for urgent queries.</p>
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-details reveal-left">
+                    <div class="contact-info-item">
+                        <!-- Icon: Map (Red) -->
+                        <div class="contact-icon-box icon-red"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h4>Address:</h4>
+                            <p>Near DR. Acadmy School, Ayodhya, Uttar Pradesh - 224204</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <!-- Icon: Phone (Green) -->
+                        <div class="contact-icon-box icon-green"><i class="fas fa-phone-alt"></i></div>
+                        <div>
+                            <h4>Phone:</h4>
+                            <p>+91 79856 97872</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <!-- Icon: Email (Yellow/Orange) -->
+                        <div class="contact-icon-box icon-orange"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <h4>Email:</h4>
+                            <p>pks3342274@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <!-- Icon: Clock (Default Cyan) -->
+                        <div class="contact-icon-box"><i class="fas fa-clock"></i></div>
+                        <div>
+                            <h4>Business Hours:</h4>
+                            <p>Mon - Sun: 9:00 AM - 9:00 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224345.83923192776!2d77.0688975472578!3d28.52728034389636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd5b347eb62d%3A0x52c2b7494e204dce!2sNew%20Delhi%2C%20Delhi!5e0!3m2!1sen!2sin!4v1678901234567!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <div class="form-container reveal-right">
+                    <form class="contact-form">
+                        <div style="text-align: center; margin-bottom: 20px;">
+                            <h3 class="neon-box">Send us a Message</h3>
+                        </div>
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="tel" placeholder="Your Mobile Number" required>
+                        <input type="email" placeholder="Your Email (Optional)">
+                        <textarea placeholder="How can we help you?" required></textarea>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <h3>Shree Balaji Cyber Cafe</h3>
+            <p>Your one-stop solution for all online works.</p>
+            <div class="footer-social">
+                <a href="#" class="social-fb"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-insta"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-tw"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p>&copy; 2024 Shree Balaji Cyber Cafe. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons Container -->
+    <div class="floating-buttons">
+        <button id="aiChatBtn" class="float-btn ai-chat-btn" title="Ask AI Assistant">
+            <i class="fas fa-robot"></i>
+        </button>
+        <a href="https://wa.me/917985697872" class="float-btn whatsapp-float" target="_blank" title="Chat on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- AI Chat Widget -->
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-header">
+            <h3><i class="fas fa-robot"></i> Balaji AI Assistant</h3>
+            <button class="close-chat" id="closeChatBtn">&times;</button>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="chat-message bot-message">
+                Hello! 👋 I am the AI Assistant for Shree Balaji Cyber Cafe. Ask me about our services, pricing, or documents required for forms!
+            </div>
+        </div>
+        <div class="typing-indicator" id="typingIndicator">AI is typing...</div>
+        <div class="chat-input-area">
+            <input type="text" id="chatInput" class="chat-input" placeholder="Ask a question..." autocomplete="off">
+            <button id="sendMessageBtn" class="send-btn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <script>
+        // --- Hamburger Menu Logic ---
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links li a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // --- Theme Toggle Logic ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = themeToggleBtn.querySelector('i');
+        const savedTheme = localStorage.getItem('theme');
+
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // --- UPDATED Intersection Observer for Animations ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                threshold: 0.1,
+                rootMargin: "0px"
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Added check for both 'visible' and 'active' based on usage
+                        entry.target.classList.add('active');
+                        entry.target.classList.add('visible'); 
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Select all elements with reveal classes
+            const animatedElements = document.querySelectorAll('.service-card, .reveal, .reveal-left, .reveal-right, .reveal-zoom');
+            
+            animatedElements.forEach((el, index) => {
+                // Add staggered delay for service cards if not manually set
+                if(el.classList.contains('service-card')) {
+                    el.style.transitionDelay = `${index * 0.1}s`; 
+                }
+                observer.observe(el);
+            });
+        });
+
+        // --- API KEYS CONFIGURATION ---
+        const AI_TOOL_KEY = "AIzaSyCn15ac8yYxldngzSSXvWlvjjTH-YGxjEg"; // For Application Writer
+        const CHATBOT_KEY = "AIzaSyBG2GVnYnaCf8DqHA_A9Upz-T9go5psjcc"; // For Chatbot & News
+
+        // --- AUTO-UPDATE NEWS TICKER LOGIC ---
+        async function fetchNewsUpdates() {
+            const marqueeContent = document.getElementById('marqueeContent');
+            // Using CHATBOT_KEY and v1 endpoint
+            const url = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${CHATBOT_KEY}`;
+            
+            const newsPrompt = `
+                You are generating updates for an Indian Cyber Cafe's scrolling news ticker.
+                Generate 5 short, urgent, and realistic headlines about current Government Jobs (Sarkari Result), Admit Cards, Scholarships, or Schemes in India (e.g., UP Police, SSC, PM Kisan, UP Scholarship).
+                
+                Rules:
+                1. Keep each headline very short (max 6-8 words).
+                2. Use emojis like 💥, 🚀, 📄 at the start of each.
+                3. Combine them into a SINGLE string separated by ' &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; '.
+                4. Do NOT use markdown. Just plain text with the separator.
+            `;
+
+            const payload = {
+                contents: [{ parts: [{ text: newsPrompt }] }]
+            };
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+                
+                if (response.ok && data.candidates) {
+                    const newText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+                    if (newText) {
+                        marqueeContent.innerHTML = `<span class="marquee-text">${newText}</span>`;
+                    }
+                }
+
+            } catch (error) {
+                console.log("Using default news due to error:", error);
+            }
+        }
+        window.addEventListener('load', fetchNewsUpdates);
+
+        // --- TYPEWRITER EFFECT LOGIC ---
+        const words = ["Passport Seva", "Aadhaar Card", "Online Forms", "Ticket Booking", "Color Printing"];
+        let i = 0;
+        let timer;
+
+        function typeWriter() {
+            const element = document.getElementById('typewriter');
+            const word = words[i].split("");
+            element.innerHTML = "";
+            let loopTyping = function() {
+                if (word.length > 0) {
+                    element.innerHTML += word.shift();
+                } else {
+                    setTimeout(deleteTypewriter, 2000); 
+                    return false;
+                }
+                timer = setTimeout(loopTyping, 100);
+            };
+            loopTyping();
+        }
+
+        function deleteTypewriter() {
+             const element = document.getElementById('typewriter');
+             const word = element.innerHTML.split("");
+             let loopDeleting = function() {
+                if (word.length > 0) {
+                    word.pop();
+                    element.innerHTML = word.join("");
+                } else {
+                    if (words.length > (i + 1)) {
+                        i++;
+                    } else {
+                        i = 0;
+                    }
+                    typeWriter();
+                    return false;
+                }
+                timer = setTimeout(loopDeleting, 50);
+            };
+            loopDeleting();
+        }
+        typeWriter();
+
+        // --- 3D TILT EFFECT FOR ABOUT IMAGE ---
+        const tiltImage = document.getElementById('tiltImage');
+        const img = tiltImage.querySelector('img');
+        
+        // Added fallback for About Image as well
+        img.onerror = function() {
+            this.src = 'https://placehold.co/800x600?text=About+Us+Image';
+        };
+
+        tiltImage.addEventListener('mousemove', (e) => {
+            const { offsetWidth: width, offsetHeight: height } = tiltImage;
+            const { offsetX: x, offsetY: y } = e;
+            const move = 20;
+            const xMove = (x / width * (move * 2)) - move;
+            const yMove = (y / height * (move * 2)) - move;
+            img.style.transform = `translate(${xMove}px, ${yMove}px) scale(1.05)`;
+        });
+
+        tiltImage.addEventListener('mouseleave', () => {
+            img.style.transform = 'translate(0px, 0px) scale(1)';
+        });
+
+        // --- NEW: AI APPLICATION WRITER LOGIC ---
+        async function handleAppGeneration() {
+            const type = document.getElementById('appType').value;
+            const details = document.getElementById('appDetails').value;
+            const outputBox = document.getElementById('aiOutput');
+            const btn = document.getElementById('generateBtn');
+
+            if(!details) {
+                alert("Please enter details");
+                return;
+            }
+
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Writing...';
+            btn.disabled = true;
+            outputBox.style.display = 'block';
+            outputBox.innerText = "Generating Application...";
+
+            const prompt = `Write a formal ${type} in English for an Indian context.
+            User Details: ${details}.
+            Format clearly with: To, The [Authority], [Subject], Respected Sir/Madam, [Body], Thanking You, [Name], [Date].
+            Keep the language simple and professional.`;
+
+            const url = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${AI_TOOL_KEY}`;
+            
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }]
+            };
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    const errorMsg = data.error?.message || "Unknown API Error";
+                    throw new Error(errorMsg);
+                }
+
+                const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text || "No text generated.";
+                outputBox.innerText = aiText;
+                
+            } catch (error) {
+                outputBox.innerText = `⚠️ Error: ${error.message}\n\nPlease check your API Key settings.`;
+                console.error("AI Writer Error:", error);
+            } finally {
+                btn.innerHTML = '<i class="fas fa-magic"></i> Generate Application';
+                btn.disabled = false;
+            }
+        }
+
+        // --- GEMINI AI CHATBOT LOGIC ---
+        const aiChatBtn = document.getElementById('aiChatBtn');
+        const chatWidget = document.getElementById('chatWidget');
+        const closeChatBtn = document.getElementById('closeChatBtn');
+        const chatInput = document.getElementById('chatInput');
+        const sendMessageBtn = document.getElementById('sendMessageBtn');
+        const chatBody = document.getElementById('chatBody');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        aiChatBtn.addEventListener('click', () => {
+            chatWidget.classList.toggle('active');
+            if(chatWidget.classList.contains('active')) {
+                chatInput.focus();
+            }
+        });
+
+        closeChatBtn.addEventListener('click', () => {
+            chatWidget.classList.remove('active');
+        });
+
+        function appendMessage(text, sender) {
+            const div = document.createElement('div');
+            div.classList.add('chat-message');
+            div.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
+            div.textContent = text;
+            chatBody.appendChild(div);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        // Chatbot API Call
+        async function getGeminiResponse(userQuery) {
+            typingIndicator.style.display = 'block';
+            
+            const url = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${CHATBOT_KEY}`;
+
+            // Refined System Prompt - Teaching AI how to reply
+            const systemPrompt = `
+                You are 'Balaji Assistant', the smart AI staff of 'Shree Balaji Cyber Cafe' in Ayodhya.
+                
+                SHOP DETAILS:
+                - Address: Near DR. Acadmy School, Ayodhya, UP - 224204.
+                - Phone: +91 79856 97872
+                - Timing: Open Mon-Sun (Everyday), 9:00 AM - 9:00 PM.
+                
+                SERVICES & PRICES (Approx):
+                - Internet: ₹30/hr
+                - B/W Print: ₹5 | Color Print: ₹10-20
+                - Scanning: ₹10
+                - Online Forms (Job/Exam): ₹50-₹100 Charge
+                - Resume/CV: ₹100
+                - Passport Apply: ₹200 Charge + Govt Fees
+                - Passport Photos: ₹20(3), ₹30(6), ₹50(12)
+                - Certificates: Income/Caste/Domicile available.
+                
+                HOW TO REPLY:
+                1. Be polite and helpful (Use Emojis 🛂, 💻, ✅).
+                2. Keep answers short (2-3 sentences).
+                3. LANGUAGE: If user asks in Hindi/Hinglish, REPLY IN HINDI/HINGLISH.
+                4. If asked about Sunday, say "Yes, we are open on Sunday!".
+                5. If a service isn't listed, ask them to call +91 79856 97872.
+            `;
+
+            const payload = {
+                contents: [{
+                    role: "user",
+                    parts: [{ text: userQuery }]
+                }],
+                systemInstruction: {
+                    parts: [{ text: systemPrompt }]
+                }
+            };
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    const errorMsg = data.error?.message || "API Error";
+                    if (errorMsg.includes("API key")) return "Error: API Key check karein.";
+                    throw new Error(errorMsg);
+                }
+
+                const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text || "Maaf kijiye, main samajh nahi paya. Dukaan par call karein.";
+                return aiText;
+
+            } catch (error) {
+                console.error("Gemini Error:", error);
+                return `Connection Error. Please try again.`;
+            } finally {
+                typingIndicator.style.display = 'none';
+            }
+        }
+
+        async function handleSend() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+
+            appendMessage(text, 'user');
+            chatInput.value = '';
+
+            const aiResponse = await getGeminiResponse(text);
+            appendMessage(aiResponse, 'bot');
+        }
+
+        sendMessageBtn.addEventListener('click', handleSend);
+        
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleSend();
+        });
+
+    </script>
+</body>
+</html>
