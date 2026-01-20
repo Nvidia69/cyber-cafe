@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1029,21 +1030,46 @@
         hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
         document.querySelectorAll('.nav-links li a').forEach(link => { link.addEventListener('click', () => { navLinks.classList.remove('active'); }); });
 
-        // --- THEME TOGGLE ---
+        // --- THEME TOGGLE (Default Dark Mode & Animation) ---
         const themeToggleBtn = document.getElementById('theme-toggle');
         const themeIcon = themeToggleBtn.querySelector('i');
         const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
+
+        // Logic: Agar theme saved nahi hai (first visit) YA saved theme 'dark' hai, to Dark Mode ON karo
+        if (!savedTheme || savedTheme === 'dark') {
             document.body.classList.add('dark-mode');
-            themeIcon.classList.remove('fa-moon'); themeIcon.classList.add('fa-sun');
+            themeIcon.classList.remove('fa-moon'); 
+            themeIcon.classList.add('fa-sun');
+        } else {
+            // Agar specifically 'light' saved hai tabhi light mode rakho
+            document.body.classList.remove('dark-mode');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
         }
+
         themeToggleBtn.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            if (document.body.classList.contains('dark-mode')) {
-                themeIcon.classList.remove('fa-moon'); themeIcon.classList.add('fa-sun'); localStorage.setItem('theme', 'dark');
-            } else {
-                themeIcon.classList.remove('fa-sun'); themeIcon.classList.add('fa-moon'); localStorage.setItem('theme', 'light');
-            }
+            // Animation start
+            themeToggleBtn.classList.add('animating');
+
+            // Wait 250ms (half animation) before changing theme
+            setTimeout(() => {
+                document.body.classList.toggle('dark-mode');
+                
+                if (document.body.classList.contains('dark-mode')) {
+                    themeIcon.classList.remove('fa-moon'); 
+                    themeIcon.classList.add('fa-sun'); 
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    themeIcon.classList.remove('fa-sun'); 
+                    themeIcon.classList.add('fa-moon'); 
+                    localStorage.setItem('theme', 'light');
+                }
+            }, 250);
+
+            // Animation end cleanup
+            setTimeout(() => {
+                themeToggleBtn.classList.remove('animating');
+            }, 500);
         });
 
         // --- INTERSECTION OBSERVER ANIMATIONS ---
